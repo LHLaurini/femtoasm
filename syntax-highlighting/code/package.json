@@ -1,0 +1,25 @@
+{
+  "name": "femtoasm-language",
+  "displayName": "femtoasm language",
+  "description": "Syntax highlighting for femtoasm",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "femtoasm",
+      "aliases": ["femtoasm", "femtoasm"],
+      "extensions": [".fa"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "femtoasm",
+      "scopeName": "source.femtoasm",
+      "path": "./syntaxes/femtoasm.tmLanguage.json"
+    }]
+  }
+}

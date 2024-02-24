@@ -1,0 +1,61 @@
+body {
+    --background: white;
+    --content: black;
+    background-color: var(--background);
+    color: var(--content);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --background: black;
+        --content: lightgray;
+    }
+
+    svg {
+        /* Credit: https://gist.github.com/ze-/2626009 */
+        filter: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPGRlZnM+ICAKICAgIDxmaWx0ZXIgaWQ9InZhbHVlX2ludmVydCIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj4KICAgICAgPGZlQ29sb3JNYXRyaXggcmVzdWx0PSJTb3VyY2VHcmFwaGljIiB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIxIiAvPgogICAgICA8ZmVDb2xvck1hdHJpeCBpbj0iU291cmNlR3JhcGhpYyIgdmFsdWVzPSItMSAwIDAgMCAxIDAgLTEgMCAwIDEgMCAwIC0xIDAgMSAwIDAgMCAxIDAiIC8+CiAgICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9Imh1ZVJvdGF0ZSIgdmFsdWVzPSIxODAiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+Cjwvc3ZnPgo=#value_invert) !important;
+    }
+}
+
+label[for="show_all"] {
+    border: solid 2px var(--content);
+    padding: 5px 10px;
+}
+
+#show_all {
+    display: none;
+}
+
+#show_all~label[for="show_all"]::before {
+    content: "Show all";
+}
+
+#show_all:checked~label[for="show_all"]::before {
+    content: "Show one";
+}
+
+#diagrams {
+    --hide: none;
+    --hide-main: block;
+}
+
+#diagrams:has(a:target) {
+    --hide-main: none;
+}
+
+#show_all:checked~#diagrams {
+    --hide: block;
+    --hide-main: block;
+}
+
+.diagram_container {
+    display: var(--hide);
+}
+
+.main {
+    display: var(--hide-main);
+}
+
+a:target+.diagram_container {
+    display: block;
+}

@@ -1,0 +1,76 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "femtoasm",
+	"patterns": [
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#values"
+		},
+		{
+			"include": "#invalid"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator",
+					"match": "=|\\$|%"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "variable.other.constant.declaration",
+					"match": "(?<==)[!-\\x7f]+(?=[\\0- ]([0-9A-F]{2}){1,4}[\\0- ])"
+				},
+				{
+					"name": "variable.other.constant.usage",
+					"match": "(?<=\\$)[!-\\x7f]*(?=[\\0- ])"
+				}
+			]
+		},
+		"values": {
+			"patterns": [
+				{
+					"name": "constant.numeric.value",
+					"match": "(?<=%)([0-9A-F]{2}){1,8}(?=[\\0- ])"
+				},
+				{
+					"name": "constant.numeric.constant.value",
+					"match": "(?<==[!-\\x7f]+[\\0- ])([0-9A-F]{2}){1,4}(?=[\\0- ])"
+				}
+			]
+		},
+		"invalid": {
+			"patterns": [
+				{
+					"name": "invalid.illegal.constant.declaration",
+					"match": "(?<==)[!-\\x7f]+([\\0- ][!-\\x7f]+)?(?=[\\0- ])"
+				},
+				{
+					"name": "invalid.illegal.value",
+					"match": "(?<=%)[!-\\x7f]+(?=[\\0- ])"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment",
+					"match": "."
+				}
+			]
+		}
+	},
+	"scopeName": "source.femtoasm"
+}

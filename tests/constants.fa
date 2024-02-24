@@ -1,0 +1,7 @@
+This file should just output "Hello, world!" followed by a newline
+
+=constant1 6C6C6548
+=constant2 2C6F
+=constant3 20
+
+$constant1 $constant2 $constant3 %77 %646C726F %0A21

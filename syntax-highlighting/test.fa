@@ -1,0 +1,22 @@
+=constant 12   ; test starting with constant declaration
+12
+; Constant declarations
+=constant 123A5678
+=invalid
+=invalid 1
+=invalid 123
+=invalid 123456789
+=invalid 1234S6789
+=invalid 1234a6789
+=invalid 123456789A
+
+; Constant references (not much can go wrong with these)
+$constant
+
+; Values
+; - Hello, world!
+%48 %65 %6C %6C %6F %2C %20 %77 %6F %72 %6C %64 %21 %0A
+; - Also Hello, world!
+%77202C6F6C6C6548 %646C726F %0A21
+; - Invalid values
+%1 %333 %55555 %7777777 %A1717171717171717 %deadbeef

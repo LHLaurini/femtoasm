@@ -1,0 +1,34 @@
+#!/usr/bin/bats
+
+setup() {
+    bats_load_library 'bats-assert'
+    bats_load_library 'bats-support'
+
+    femtoasm() {
+        ../src/femtoasm < "$1" | hexdump -C
+    }
+}
+
+@test "works with an empty file" {
+    run femtoasm "empty.fa"
+    assert_output "$(cat empty.hex)"
+}
+
+@test "can output bytes" {
+    run femtoasm "simple.fa"
+    assert_output "$(cat simple.hex)"
+}
+
+@test "can output words of all sizes" {
+    run femtoasm "simple2.fa"
+    assert_output "$(cat simple2.hex)"
+}
+
+@test "behaves correctly with constants and literals of all sizes" {
+    femtoasm "constants.fa"
+    run assert_output "$(cat constants.hex)"
+}
+
+@test "is identical to the fasm version" {
+    assert_equal "$(hexdump -C "../src/femtoasm-fasm")" "$(hexdump -C "../src/femtoasm")"
+}

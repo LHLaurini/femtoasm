@@ -1,0 +1,5 @@
+.gitignore
+: femtoasm.asm |> fasm %f %o && chmod +x %o |> femtoasm-fasm
+: femtoasm-fasm |> objdump -b binary -m i386:x86-64:intel -D %f --start-address=0x400078 --adjust-vma=0x400000 > %o |> disasm.txt
+: femtoasm.fa | femtoasm-fasm |> ./femtoasm-fasm < %f > %o && chmod +x %o |> femtoasm
+: femtoasm.cpp |> g++ -Werror -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -std=c++2b %f -o %o |> femtoasm-c++
